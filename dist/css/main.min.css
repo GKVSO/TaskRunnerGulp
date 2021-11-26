@@ -1,0 +1,7 @@
+body {
+  background-color: violet
+}
+body,
+html {
+  height: 100%
+}
