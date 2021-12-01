@@ -67,7 +67,8 @@ function bield() {
         'app/*.html',
         'app/css/main.min.css',
         'app/js/app.min.js',
-        'app/images/dist/**/*'
+        'app/images/dist/**/*',
+        'app/fonts/**/*'
     ], {base: 'app'})
     .pipe(dest('dist/'))
 }
