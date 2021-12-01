@@ -1,3 +1,171 @@
-body {
-    // background-color: antiquewhite;
+// USER VARIABLES SECTION
+$accent: #FE9728; // Accent Color
+$brand: #9997F9; // Accent Color
+$black: #160041; // Accent Color
+$gray: #AFAFAF;
+$fontsize: 24px; // Body Font Size
+$fontweight: 400;
+$titlecolor: $black; // Text Color
+$textcolor: $gray; // Text Color
+$lineheight: 1.75rem; // Document Line Height
+$userfont: 'TT Norms', sans-serif; // User Font Family
+$systemfont: -apple-system, BlinkMacSystemFont, Arial, sans-serif; // System Font Family
+
+// IMPORT SECTION
+
+@import 'node_modules/bootstrap/scss/bootstrap-reboot.scss'; // Bootstrap Reboot collection
+// @import 'node_modules/bootstrap/scss/mixins/_breakpoints.scss'; // Bootstrap Breakpoints mixin
+@import 'node_modules/bootstrap/scss/bootstrap-grid.scss'; // Optional Bootstrap Grid
+// @import 'node_modules/bootstrap/scss/utilities/_sizing.scss' // Optional Bootstrap Utilites
+
+@font-face {
+    font-family: 'TT Norms';
+    src: url('TTNorms-Bold.eot');
+    src: url('TTNorms-Bold.eot?#iefix') format('embedded-opentype'),
+        url('TTNorms-Bold.woff2') format('woff2'),
+        url('TTNorms-Bold.woff') format('woff'),
+        url('TTNorms-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
 }
+
+// Основные стли для сайта
+body,
+html {
+    height: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+html {
+    scroll-behavior: smooth;
+
+    // Изменение скроллбара
+    // &::-webkit-scrollbar {
+    //     background-color: $brand;
+    //     width: 6px;
+    // }
+
+    // &::-webkit-scrollbar-thumb {
+    //     background-color: $accent;
+    //     border-radius: 100px;
+    // }
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background: linear-gradient(135.9deg, #F6F3FD 30.67%, #E4F8E7 86.52%);
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex: 0 0 auto;
+}
+
+
+
+// GENERAL DOCUMENT STYLES
+
+::placeholder {
+    color: #666;
+}
+
+::selection {
+    background-color: $accent;
+    color: #fff;
+}
+
+body {
+    font-family: $userfont;
+    font-size: $fontsize;
+    line-height: $lineheight;
+    color: $textcolor;
+    min-width: 320px;
+}
+
+input,
+textarea {
+    outline: none;
+
+    &:focus:required:invalid {
+        border-color: red
+    }
+
+    &:required:valid {
+        border-color: green
+    }
+}
+
+
+// ТИПОГРАФИКА
+
+h1 {
+    text-transform: uppercase;
+    color: $titlecolor;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 4rem;
+}
+
+h2 {
+    text-transform: uppercase;
+    color: $titlecolor;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 3rem;
+}
+
+p {
+    color: $textcolor;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    display: block;
+    background-color: $accent;
+    border: none;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+        transition: all .25s ease-out;
+    }
+
+    &:active {
+        transition: all .25s ease-out;
+    }
+
+}
+
+
+input {
+    display: block;
+    border: none;
+    transition: all .5s ease-out;
+
+    &:hover {
+        transition: all .25s ease-in;
+    }
+
+    &::placeholder {
+        font-size: 20px;
+    }
+}
+
+.not-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+
