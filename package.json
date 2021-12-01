@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.27.7",
+    "browsersync-ssi": "^0.2.4",
     "check": "^1.0.0",
     "del": "^6.0.0",
     "g": "^2.0.1",
@@ -25,6 +26,7 @@
     "gulp-uglify-es": "^3.0.0",
     "npm": "^8.1.4",
     "sass": "^1.43.5",
+    "ssi": "^0.3.0",
     "updates": "^12.2.2"
   },
   "dependencies": {

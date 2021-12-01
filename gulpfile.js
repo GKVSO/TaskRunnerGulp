@@ -4,17 +4,24 @@ const concat       = require('gulp-concat');
 const uglify       = require('gulp-uglify-es').default;
 const sass         = require('gulp-sass')(require('sass'));
 const sassglob     = require('gulp-sass-glob')
-const rename       = require('gulp-rename')
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCss     = require('gulp-clean-css');
 const imagemin     = require('gulp-imagemin')
 const newer        = require('gulp-newer');
 const del          = require('del');
+const bssi         = require('browsersync-ssi');
+const ssi          = require('ssi');
 
 // BrowserSync
 function browsersync() {
     browserSync.init({
-        server : {baseDir: 'app/'},
+        server : {
+            baseDir: 'app/',
+            middleware: bssi({
+				baseDir: 'app/',
+				ext: '.html'
+			})
+        },
         notify : false,
         online : true,
     })
@@ -65,7 +72,6 @@ function image() {
 // Bield
 function bield() {
     return src([
-        'app/*.html',
         'app/css/main.min.css',
         'app/js/app.min.js',
         'app/images/dist/**/*',
@@ -75,6 +81,14 @@ function bield() {
 }
 function cleanDist() {
     return del('dist/**/*', {force : true})
+}
+
+async function buildhtml() {
+	let includes = new ssi('app/', 'dist/', '/**/*.html')
+	includes.compile()
+	del('dist/parts', {
+		force: true
+	})
 }
 
 // Вотчинг файлов
@@ -98,6 +112,7 @@ exports.styles = styles;
 exports.browsersync = browsersync;
 exports.image = image;
 exports.cleanDist = cleanDist;
+exports.buildhtml = buildhtml;
 
-exports.bield = series(cleanDist, scripts, styles, image, bield);
+exports.bield = series(cleanDist, scripts, styles, image, bield, buildhtml);
 exports.default = parallel(scripts, styles, image, browsersync, startwatch);
