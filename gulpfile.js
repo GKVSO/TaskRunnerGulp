@@ -11,6 +11,7 @@ const newer        = require('gulp-newer');
 const del          = require('del');
 const bssi         = require('browsersync-ssi');
 const ssi          = require('ssi');
+const webpack      = require('webpack-stream');
 
 // BrowserSync
 function browsersync() {
@@ -29,12 +30,39 @@ function browsersync() {
 
 // Scripts
 function scripts () {
-    return src([
-        'node_modules/jquery/dist/jquery.min.js',
-        'app/js/app.js',
-    ])
-    .pipe(concat('app.min.js'))
-    .pipe(uglify())
+    return src('app/js/app.js')
+    .pipe(webpack({
+        mode   : 'production',
+        performance: { hints: false },
+        output : {
+            filename : 'app.min.js'
+        },
+        module : {
+            rules : [
+                {
+                    test    : /\.js$/,
+                    exclude : /(node_modules)/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env'],
+                            plugins: ['babel-plugin-root-import']
+                        }
+                    }
+                    // query: {
+					// 	presets: ['@babel/env'],
+					// 	plugins: ['babel-plugin-root-import']
+					// }
+                }
+            ]
+        },
+        optimization: {
+            minimize: true,
+            splitChunks : {
+                chunks : 'all'
+            }
+        },
+    }))
     .pipe(dest('app/js'))
     .pipe(browserSync.stream())
 }
