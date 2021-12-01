@@ -4,6 +4,7 @@ const concat       = require('gulp-concat');
 const uglify       = require('gulp-uglify-es').default;
 const sass         = require('gulp-sass')(require('sass'));
 const sassglob     = require('gulp-sass-glob')
+const rename       = require('gulp-rename')
 const autoprefixer = require('gulp-autoprefixer');
 const cleanCss     = require('gulp-clean-css');
 const imagemin     = require('gulp-imagemin')
@@ -47,7 +48,7 @@ function styles() {
                     specialComments : 0
                 }
             },
-            format : 'beautify'
+            /* format : 'beautify' */
         }))
         .pipe(dest('app/css'))
         .pipe(browserSync.stream())
@@ -78,10 +79,18 @@ function cleanDist() {
 
 // Вотчинг файлов
 function startwatch() {
-    watch(['app/**/*.js', '!app/**/*.min.js'], scripts)
-    watch(['app/styles/scss/**/*.scss'], styles)
-    watch('app/**/*.html').on('change', browserSync.reload)
-    watch('app/images/src/**/*', image)
+    watch(['app/**/*.js', '!app/**/*.min.js'], {
+        usePolling : true
+    }, scripts)
+    watch(['app/styles/scss/**/*.scss'], {
+        usePolling : true
+    }, styles)
+    watch('app/**/*.html', {
+        usePolling : true
+    }).on('change', browserSync.reload)
+    watch('app/images/src/**/*', {
+        usePolling : true
+    }, image)
 }
 
 exports.scripts = scripts;
