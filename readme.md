@@ -35,6 +35,10 @@ Where:
 * config.scss file for default styles
 * block - The folder where styles are stored .scss splitting into categories (header, footer, etc.)
 
+```
+<!--#include virtual="/parts/header.html" -->
+```
+
 ___
 ## Российская версия документации
 
@@ -70,7 +74,9 @@ gulp
 * config.scss – файл для дефолтных стилей
 * block – Папка где хранятся стили .scss разбытие на категории ( header, footer и т.д )
 
-
+```
+<!--#include virtual="/parts/header.html" -->
+```
 
 
 

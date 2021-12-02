@@ -103,7 +103,8 @@ function bield() {
         'app/css/main.min.css',
         'app/js/app.min.js',
         'app/images/dist/**/*',
-        'app/fonts/**/*'
+        'app/fonts/**/*',
+        '!app/typography.html'
     ], {base: 'app'})
     .pipe(dest('dist/'))
 }
@@ -112,7 +113,7 @@ function cleanDist() {
 }
 
 async function buildhtml() {
-	let includes = new ssi('app/', 'dist/', '/**/*.html')
+	let includes = new ssi('app/', 'dist/', '/**/*.html', '!/**/*typography.html')
 	includes.compile()
 	del('dist/parts', {
 		force: true
@@ -135,12 +136,15 @@ function startwatch() {
     }, image)
 }
 
-exports.scripts = scripts;
-exports.styles = styles;
-exports.browsersync = browsersync;
-exports.image = image;
-exports.cleanDist = cleanDist;
-exports.buildhtml = buildhtml;
 
-exports.bield = series(cleanDist, scripts, styles, image, bield, buildhtml);
+exports.scripts     = scripts;
+exports.styles      = styles;
+exports.browsersync = browsersync;
+exports.image       = image;
+exports.cleanDist   = cleanDist;
+exports.buildhtml   = buildhtml;
+
+
+
+exports.bield   = series(cleanDist, scripts, styles, image, bield, buildhtml);
 exports.default = parallel(scripts, styles, image, browsersync, startwatch);
