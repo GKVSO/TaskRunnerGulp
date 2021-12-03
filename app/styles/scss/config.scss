@@ -111,6 +111,9 @@ h1 {
     font-weight: 700;
     font-size: 60px;
     line-height: 4rem;
+    span {
+
+    }
 }
 
 h2 {
@@ -130,6 +133,9 @@ p {
 
 a {
     text-decoration: none;
+    &:hover {
+        
+    }
 }
 
 button {
