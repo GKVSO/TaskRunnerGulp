@@ -134,11 +134,11 @@ p {
 a {
     text-decoration: none;
     &:hover {
-        
+        text-decoration: none;
     }
 }
 
-button {
+.btn {
     display: block;
     background-color: $accent;
     border: none;

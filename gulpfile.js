@@ -1,5 +1,9 @@
 const {src, dest, parallel, series, watch} = require('gulp');
 const browserSync  = require('browser-sync').create();
+const bssi         = require('browsersync-ssi');
+const ssi          = require('ssi');
+const webpackS     = require('webpack-stream');
+const webpack      = require('webpack');
 const concat       = require('gulp-concat');
 const uglify       = require('gulp-uglify-es').default;
 const sass         = require('gulp-sass')(require('sass'));
@@ -9,9 +13,7 @@ const cleanCss     = require('gulp-clean-css');
 const imagemin     = require('gulp-imagemin')
 const newer        = require('gulp-newer');
 const del          = require('del');
-const bssi         = require('browsersync-ssi');
-const ssi          = require('ssi');
-const webpack      = require('webpack-stream');
+const rename       = require('gulp-rename');
 
 // BrowserSync
 function browsersync() {
@@ -23,32 +25,29 @@ function browsersync() {
 				ext: '.html'
 			})
         },
-        notify : false,
-        online : true,
+        ghostMode : false,
+        notify    : false,
+        online    : true,
+        tunnel    : true
     })
 }
 
 // Scripts
 function scripts () {
     return src('app/js/app.js')
-    .pipe(webpack({
-        mode   : 'production',
+    .pipe(webpackS({
+        mode   : 'development',
         performance: { hints: false },
-        output : {
-            filename : 'app.min.js'
-        },
         module : {
             rules : [
                 {
                     test    : /\.js$/,
                     exclude : /(node_modules)/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env'],
-                            plugins: ['babel-plugin-root-import']
-                        }
-                    }
+                    loader: 'babel-loader',
+					query: {
+						presets: ['@babel/env'],
+						plugins: ['babel-plugin-root-import']
+					}
                     // query: {
 					// 	presets: ['@babel/env'],
 					// 	plugins: ['babel-plugin-root-import']
@@ -56,13 +55,14 @@ function scripts () {
                 }
             ]
         },
-        optimization: {
-            minimize: true,
-            splitChunks : {
-                chunks : 'all'
-            }
-        },
+        // optimization: {
+        //     minimize: true,
+        //     splitChunks : {
+        //         chunks : 'all'
+        //     }
+        // },
     }))
+    .pipe(rename('app.min.js'))
     .pipe(dest('app/js'))
     .pipe(browserSync.stream())
 }
@@ -122,7 +122,7 @@ async function buildhtml() {
 
 // Вотчинг файлов
 function startwatch() {
-    watch(['app/**/*.js', '!app/**/*.min.js'], {
+    watch(['app/js/**/*.js', '!app/js/**/*.min.js'], {
         usePolling : true
     }, scripts)
     watch(['app/styles/scss/**/*.scss'], {
@@ -147,4 +147,4 @@ exports.buildhtml   = buildhtml;
 
 
 exports.bield   = series(cleanDist, scripts, styles, image, bield, buildhtml);
-exports.default = parallel(scripts, styles, image, browsersync, startwatch);
+exports.default = series(scripts, styles, image, parallel(browsersync, startwatch));
