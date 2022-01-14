@@ -34,7 +34,8 @@
     "sass": "^1.43.5",
     "ssi": "^0.3.0",
     "updates": "^12.2.2",
-    "webpack-stream": "^7.0.0"
+    "webpack": "^5.65.0",
+    "webpack-stream": "^6.1.2"
   },
   "dependencies": {
     "bootstrap": "^5.1.3"

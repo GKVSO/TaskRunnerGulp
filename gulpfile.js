@@ -143,8 +143,9 @@ exports.browsersync = browsersync;
 exports.image       = image;
 exports.cleanDist   = cleanDist;
 exports.buildhtml   = buildhtml;
+exports.bield       = bield;
 
 
 
-exports.bield   = series(cleanDist, scripts, styles, image, bield, buildhtml);
+exports.dist   = series(cleanDist, scripts, styles, image, buildhtml, bield);
 exports.default = series(scripts, styles, image, parallel(browsersync, startwatch));
