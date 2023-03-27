@@ -98,7 +98,7 @@ function image() {
 }
 
 // Bield
-function bield() {
+function build() {
     return src([
         'app/css/main.min.css',
         'app/js/app.min.js',
@@ -147,5 +147,5 @@ exports.bield       = bield;
 
 
 
-exports.dist   = series(cleanDist, scripts, styles, image, buildhtml, bield);
+exports.dist   = series(cleanDist, scripts, styles, image, buildhtml, build);
 exports.default = series(scripts, styles, image, parallel(browsersync, startwatch));
