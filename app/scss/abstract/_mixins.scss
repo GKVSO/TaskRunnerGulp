@@ -1,0 +1,19 @@
+// Include Font
+@mixin font-face($family, $src, $weight, $style) {
+    font-family: $family;
+    src: url('#{src}.eot');
+    src:
+        url('#{src}.woff2') format('woff2'),
+        url('#{src}.woff') format('woff'),
+        url('#{src}.ttp') format('truetype');
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+}
+
+//Includes Family Fonts
+@mixin family-fonts($weights, $params-font...) {
+    @each $weight in $weights {
+        @include font-face($weight: $weight, $params-font...)
+    }
+}
