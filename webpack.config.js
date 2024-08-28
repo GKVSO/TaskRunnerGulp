@@ -1,25 +1,27 @@
 import path from 'path';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import dotenv from 'dotenv';
 
-const nodeEnv = procces.env.NODE_ENV;
+dotenv.config();
+
+const nodeEnv = process.env.NODE_ENV;
 const isDev = nodeEnv === 'development';
 const idProduction = !isDev;
 
 function fileName() {
-	return isDev ? '[name].js' : '[name].[hash].js'
+	return isDev ? '[name].js' : '[name].[fullhash].js'
 }
 
 export default {
-	entry: path.resolve('src/scripts/index.js'),
+	entry: {
+		index: path.resolve('src/scripts/index.js'),
+	},
 	output: {
-		filename: fileName()
+		filename: fileName(),
 	},
 	mode: nodeEnv,
-	// plugins: [
-	// 	new CleanWebpackPlugin
-	// ],
+	devtool: isDev ? 'inline-source-map' : false,
 	resolve: {
-		extensions: ['js'],
+		extensions: ['.js'],
 		alias: {
 			'@': path.resolve('src'),
 			'@modules': path.resolve('src/scripts/modules')
