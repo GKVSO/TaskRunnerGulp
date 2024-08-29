@@ -26,6 +26,7 @@
 		"clean-webpack-plugin": "^4.0.0",
 		"css-loader": "^7.1.2",
 		"dotenv": "^16.4.5",
+		"glob": "^11.0.0",
 		"gulp": "^5.0.0",
 		"gulp-autoprefixer": "^9.0.0",
 		"gulp-changed": "^5.0.2",
