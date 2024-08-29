@@ -7,7 +7,7 @@ import groupMediaQueries from 'gulp-group-css-media-queries';
 import gulpIf from 'gulp-if';
 import cleanCss from 'gulp-clean-css';
 import plumber from 'gulp-plumber';
-import plumberConfig from './gulp/utils/plumberConfig.js';
+import plumberConfig from '../../gulp/utils/plumberConfig.js';
 import changed from 'gulp-changed';
 import rename from 'gulp-rename';
 import dotenv from 'dotenv';
@@ -40,7 +40,8 @@ export default function styles() {
 		.pipe(gulpIf( isDev, sourceMaps.init() ))
 		.pipe(sass())
 		.pipe(autoprefixer({ grid: true }))
-		.pipe(gulpIf( isProd, series(groupMediaQueries(), cleanCss(configCleanCss)) ))
+		.pipe(gulpIf( isProd, groupMediaQueries() ))
+		.pipe(gulpIf( isProd, cleanCss(configCleanCss) ))
 		.pipe(gulpIf( isDev, sourceMaps.write() ))
 		.pipe(rename(configRename))
 		.pipe(dest('./app/css'))

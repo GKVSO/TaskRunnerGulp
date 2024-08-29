@@ -17,8 +17,11 @@
 @import './layouts/container';
 @import './layouts/layout';
 
+// COMPONENTS
+@import './components/buttons';
+@import './components/form';
+@import './components/input';
+
 // SECTIONS
 @import './sections/header';
 @import './sections/footer';
-
-
