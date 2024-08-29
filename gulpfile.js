@@ -4,6 +4,7 @@ import media, { images, icons } from './gulp/tasks/media.js'
 import html from './gulp/tasks/html.js'
 import styles from './gulp/tasks/styles.js';
 import localServer from './gulp/tasks/localServer.js';
+import watch from './gulp/tasks/watch.js'
 
 export {
 	scripts,
@@ -12,5 +13,6 @@ export {
 	media,
 	html,
 	styles,
-	localServer
+	localServer,
+	watch
 }
