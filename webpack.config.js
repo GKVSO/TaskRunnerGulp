@@ -5,7 +5,7 @@ dotenv.config();
 
 const nodeEnv = process.env.NODE_ENV;
 const isDev = nodeEnv === 'development';
-const idProduction = !isDev;
+const isProd = !isDev;
 
 function fileName() {
 	return isDev ? '[name].js' : '[name].[fullhash].js'
