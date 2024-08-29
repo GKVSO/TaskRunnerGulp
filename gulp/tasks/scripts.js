@@ -5,6 +5,8 @@ import webpackConfig from '../../webpack.config.js';
 import plumber from 'gulp-plumber';
 import plumberConfig from '../utils/plumberConfig.js';
 
+//TODO: Возможно стоит добавить changed в таск
+
 export default function scripts() {
 	return src(path.resolve('src/scripts/index.js'))
 		.pipe(plumber(plumberConfig('Scripts')))
