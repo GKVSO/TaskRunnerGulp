@@ -5,6 +5,7 @@ import html from './gulp/tasks/html.js'
 import styles from './gulp/tasks/styles.js';
 import localServer from './gulp/tasks/localServer.js';
 import watch from './gulp/tasks/watch.js'
+import clean, { cleanApp, cleanBuild, cleanImg } from './gulp/tasks/clean.js';
 
 export {
 	scripts,
@@ -14,5 +15,9 @@ export {
 	html,
 	styles,
 	localServer,
-	watch
+	watch,
+	clean,
+	cleanApp,
+	cleanBuild,
+	cleanImg,
 }

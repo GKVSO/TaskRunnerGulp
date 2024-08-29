@@ -1,15 +1,15 @@
-import { watch } from 'gulp.js';
+import { watch as watching } from 'gulp';
 import scripts from './scripts.js';
 import styles from './styles.js';
 import html from './html.js';
 import { images, icons } from './media.js';
 
 export default function watch(done) {
-	watch('./src/scripts/**/*.js', scripts)
-	watch('./src/scss/**/*.scss', styles)
-	watch('./src/html/**/*.html', html)
-	watch('./src/assets/images/**/*', images)
-	watch('./src/assets/icons/**/*', icons)
+	watching('./src/scripts/**/*.js', scripts)
+	watching('./src/scss/**/*.scss', styles)
+	watching('./src/html/**/*.html', html)
+	watching('./src/assets/images/**/*', images)
+	watching('./src/assets/icons/**/*', icons)
 	
 	done()
 }

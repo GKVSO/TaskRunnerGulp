@@ -30,6 +30,7 @@
 		"gulp": "^5.0.0",
 		"gulp-autoprefixer": "^9.0.0",
 		"gulp-changed": "^5.0.2",
+		"gulp-clean": "^0.4.0",
 		"gulp-clean-css": "^4.3.0",
 		"gulp-group-css-media-queries": "^1.2.2",
 		"gulp-if": "^3.0.0",
