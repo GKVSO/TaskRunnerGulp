@@ -1,25 +1,28 @@
-import { src, parallel } from 'gulp';
+import gulp, { src, parallel, series } from 'gulp';
 import plumber from 'gulp-plumber';
 import plumberConfig from '../utils/plumberConfig.js'
 import gulpClean from 'gulp-clean';
 import filterEmptyGlobPatterns from '../utils/filterEmptyGlobPatterns.js';
 
-export const cleanApp = clean('app/**/*')
-export const cleanBuild = clean('build/**/*')
-export const cleanImg = clean('app/assets/images/**/*')
-export default clean = parallel(cleanApp, cleanBuild)
+export const cleanApp = clean('app/*', 'cleanApp')
+export const cleanBuild = clean('build/*', 'cleanBuild')
+export const cleanImg = clean('app/assets/images/*', 'cleanImg')
+export default clean = series(cleanApp, cleanBuild)
 
-function clean(glob) {
-	return function(done) {
+function clean(glob, name = 'clean') {
+	const innerFunction = function(done) {
 		if(filterEmptyGlobPatterns([glob]).length === 0) {
-			console.log(`no such file or directory in: ${glob}`);
-			
+			console.log(`[${name}]: no such file or directory in: ${glob}`);
+
 			done();
 			return;
 		}
 
-		return src(glob)
+		return src(glob, {allowEmpty: true})
 			.pipe(plumber(plumberConfig(`Clean: ${glob}`)))
 			.pipe(gulpClean())
 	}
+
+	Object.defineProperty(innerFunction, 'name', { value: name });
+	return innerFunction;
 }

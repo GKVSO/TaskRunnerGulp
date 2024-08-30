@@ -7,6 +7,10 @@ import localServer from './gulp/tasks/localServer.js';
 import watch from './gulp/tasks/watch.js'
 import clean, { cleanApp, cleanBuild, cleanImg } from './gulp/tasks/clean.js';
 
+import run from './gulp/tasks/run.js';
+import build, { destToBuild } from './gulp/tasks/build.js';
+
+export default run;
 export {
 	scripts,
 	images,
@@ -20,4 +24,6 @@ export {
 	cleanApp,
 	cleanBuild,
 	cleanImg,
+	build,
+	destToBuild
 }
