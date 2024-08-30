@@ -7,5 +7,5 @@ import localServer from './localServer.js';
 import watch from './watch.js';
 import { cleanApp } from './clean.js';
 
-const run = series(cleanApp, parallel(html, styles, scripts, media), localServer, watch)
+const run = series(cleanApp, parallel(html, styles, scripts, media), watch, localServer )
 export default run;
