@@ -3,6 +3,16 @@ import plumber from 'gulp-plumber';
 import plumberConfig from '../utils/plumberConfig.js'
 import gulpClean from 'gulp-clean';
 import filterEmptyGlobPatterns from '../utils/filterEmptyGlobPatterns.js';
+import chalk from 'chalk';
+
+function getWarningMessage(name, globPattern) {
+	name = chalk.bgYellow(`[${name}]`);
+	globPattern = chalk.underline(globPattern);
+
+	const resultMessage = `${name}: no such file or directory in: ${globPattern}`
+
+	return resultMessage;
+}
 
 export const cleanApp = clean('app/*', 'cleanApp')
 export const cleanBuild = clean('build/*', 'cleanBuild')
@@ -12,7 +22,7 @@ export default clean = series(cleanApp, cleanBuild)
 function clean(glob, name = 'clean') {
 	const innerFunction = function(done) {
 		if(filterEmptyGlobPatterns([glob]).length === 0) {
-			console.log(`[${name}]: no such file or directory in: ${glob}`);
+			console.log(getWarningMessage(name, glob));
 
 			done();
 			return;
