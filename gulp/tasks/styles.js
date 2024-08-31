@@ -11,6 +11,7 @@ import plumberConfig from '../../gulp/utils/plumberConfig.js';
 import changed from 'gulp-changed';
 import rename from 'gulp-rename';
 import dotenv from 'dotenv';
+import browserSync from 'browser-sync';
 
 dotenv.config();
 const sass = gulpSass(compilerSass)
@@ -44,5 +45,6 @@ export default function styles() {
 		.pipe(gulpIf( isProd, cleanCss(configCleanCss) ))
 		.pipe(gulpIf( isDev, sourceMaps.write() ))
 		.pipe(rename(configRename))
-		.pipe(dest('./app/css'))
+		.pipe(dest('./app/styles'))
+		.pipe(browserSync.stream())
 }

@@ -7,6 +7,7 @@ import gulpIf from 'gulp-if';
 import htmlmin from 'gulp-htmlmin';
 import prettyHtml from 'gulp-pretty-html';
 import dotenv from 'dotenv';
+import browserSync from 'browser-sync';
 
 // Get NODE ENVIRONMENT
 dotenv.config()
@@ -34,4 +35,5 @@ export default function html() {
 		.pipe(gulpIf( isProd, htmlmin(htmlminConfig) ))
 		.pipe(gulpIf( isDev, prettyHtml(prettyHtmlConfig) ))
 		.pipe(dest('./app'), { base: './app' })
+		.on('end', browserSync.reload)
 }

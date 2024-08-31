@@ -8,13 +8,13 @@ import filterEmptyGlobPatterns from '../utils/filterEmptyGlobPatterns.js';
 
 export function destToBuild() {
 	return src(filterEmptyGlobPatterns([
-    './app/css/**/*.css',
-    './app/js/**/*.js',
+    './app/styles/**/*.css',
+    './app/scripts/**/*.js',
     './app/assets/images/**/*',
     './app/assets/icons/**/*',
     './app/**/*.html'
-  ]))
-		.pipe(dest('./build/'))
+  ]), { base: 'app' })
+		.pipe(dest('build'))
 }
 
 const build = series(clean, parallel(html, styles, scripts, media), destToBuild)
