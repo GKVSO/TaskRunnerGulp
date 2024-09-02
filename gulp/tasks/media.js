@@ -3,14 +3,24 @@ import plumber from 'gulp-plumber';
 import plumberConfig from '../utils/plumberConfig.js';
 import changed from 'gulp-changed';
 import imagemin from 'gulp-imagemin';
+import webp from 'gulp-webp';
 import browserSync from 'browser-sync';
 
 export function images() {
-	return src('./src/assets/images/**/*')
-		.pipe(plumber(plumberConfig('Images')))
+	return src(['./src/assets/images/**/*', '!./src/assets/images/**/*.webp'], { encoding: false })
+	  // === Поток преобразования изображения в webp формат ===
+		.pipe(plumber(plumberConfig('Images: Webp')))
+		.pipe(changed('./app/assets/images'))
+		.pipe(webp())
+		.pipe(dest('./app/assets/images'), { base: './app/assets/images' })
+
+		// === Поток оптимизации картинок ===
+		.pipe(src('./src/assets/images/**/*', { encoding: false }))
+		.pipe(plumber(plumberConfig('Images: Optimize')))
 		.pipe(changed('./app/assets/images'))
 		.pipe(imagemin({ verbose: true }))
 		.pipe(dest('./app/assets/images'), { base: './app/assets/images' })
+
 		.on('end', browserSync.reload)
 }
 

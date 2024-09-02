@@ -7,6 +7,7 @@ import gulpIf from 'gulp-if';
 import htmlmin from 'gulp-htmlmin';
 import prettyHtml from 'gulp-pretty-html';
 import dotenv from 'dotenv';
+import webpHTML from 'gulp-webp-html';
 import browserSync from 'browser-sync';
 
 // Get NODE ENVIRONMENT
@@ -32,8 +33,9 @@ export default function html() {
 		.pipe(plumber(plumberConfig('HTML')))
 		.pipe(changed('./app')) 
 		.pipe(ssi())
-		.pipe(gulpIf( isProd, htmlmin(htmlminConfig) ))
+		.pipe(webpHTML())
 		.pipe(gulpIf( isDev, prettyHtml(prettyHtmlConfig) ))
+		.pipe(gulpIf( isProd, htmlmin(htmlminConfig) ))
 		.pipe(dest('./app'), { base: './app' })
 		.on('end', browserSync.reload)
 }
