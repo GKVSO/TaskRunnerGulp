@@ -1,0 +1,6 @@
+@function get-container-width() {
+	@return $container-width + ($container-padding * 2)
+}
+
+
+	

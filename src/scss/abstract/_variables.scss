@@ -1,0 +1,32 @@
+/* 
+	Colors 
+*/
+$accent: red;
+$brand: blue;	
+$header-color: black;
+$text-color: gray;
+
+/* 
+	Custom ScrollBar
+*/
+$width-scrollbar: 15px; // ширина scrollbar
+$color-scrollbar: $brand; // цвет дорожки
+$color-scroll: $accent; // цвет ползунка
+$border-radius-scroll: 20px; // закругления ползунка
+$padding-scroll: 3px; // padding вокруг ползунка
+
+// Fonts
+$font-main: 'Times New Roman', Times, serif;
+$font-main-size: 20px;
+
+// Container
+$container-width: 1200px;
+$container-padding: 15px;
+
+// Media 
+$break-points: (
+	laptop: "min-width: 1024px) and (max-width: 1140px",
+	tablet: "max-width: 1023px",
+	mobile: "max-width: 767px",
+	small: "max-width: 375px",
+)

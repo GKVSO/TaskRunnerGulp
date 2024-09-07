@@ -1,0 +1,43 @@
+// Кастомный скроллбар
+@mixin custom-scrollbar() {
+	body::-webkit-scrollbar {
+		width: $width-scrollbar;               
+	}
+	body::-webkit-scrollbar-track {
+		background: $color-scrollbar;        
+	}
+	body::-webkit-scrollbar-thumb {
+		background-color: $color-scroll; 
+		border-radius: $border-radius-scroll; 
+		border: $padding-scroll solid $color-scrollbar;
+	}
+}
+
+// Media
+@mixin laptop {
+	@media screen and (map-get($break-points, laptop)) {
+		@content;
+	}
+}
+@mixin tablet {
+	@media screen and (map-get($break-points, tablet)) {
+		@content;
+	}
+}
+@mixin mobile {
+	@media screen and (map-get($break-points, mobile)) {
+		@content;
+	}
+}
+@mixin small {
+	@media screen and (map-get($break-points, small)) {
+		@content;
+	}
+}
+
+// Retina Images Media
+@mixin mediaBg {
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+		@content
+	}
+}
