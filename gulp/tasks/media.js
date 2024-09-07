@@ -5,6 +5,32 @@ import changed from 'gulp-changed';
 import imagemin from 'gulp-imagemin';
 import webp from 'gulp-webp';
 import browserSync from 'browser-sync';
+import svgSprite from 'gulp-svg-sprite';
+
+const svgSymbolConfig = {
+	mode: {
+		symbol: {
+			sprite: '../sprite.symbol.svg',
+		},
+	},
+	shape: {
+		transform: [
+			{
+				svgo: {
+					js2svg: { indent: 4, pretty: true },
+					plugins: [
+						{
+							name: 'removeAttrs',
+							params: {
+								attrs: '(fill|stroke)',
+							},
+						},
+					],
+				},
+			},
+		],
+	},
+};
 
 export function images() {
 	return src(['./src/assets/images/**/*', '!./src/assets/images/**/*.webp'], { encoding: false })
@@ -29,6 +55,7 @@ export function icons() {
 		.pipe(plumber(plumberConfig('Icons')))
 		.pipe(changed('./app/assets/icons'))
 		.pipe(imagemin({ verbose: true }))
+		.pipe(svgSprite(svgSymbolConfig))
 		.pipe(dest('./app/assets/icons'), { base: './app/assets/icons' })
 		.on('end', browserSync.reload)
 }
