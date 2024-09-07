@@ -1,0 +1,48 @@
+%container {
+	padding: $container-padding;
+	display: block;
+}
+
+.container {
+	@extend %container;
+
+	margin: 0 auto;
+	max-width: get-container-width();
+}
+
+.container-full {
+	@extend %container;
+
+	display: block;
+	width: 100%;
+}
+
+.container-left {
+	@extend %container;
+
+	margin-right: calc(
+		(100% - $container-width) / 2 - $container-padding
+	);
+}
+
+.container-right {
+	@extend %container;
+
+	margin-left: calc(
+		(100% - $container-width) / 2 - $container-padding
+	);
+}
+
+.container-left-50 {
+	@extend %container;
+
+	max-width: 50%;
+	margin-right: auto;
+}
+
+.container-right-50 {
+	@extend %container;
+
+	max-width: 50%;
+	margin-left: auto;
+}

@@ -1,8 +1,8 @@
 // ABSTRACT
+@import './abstract/variables';
 @import './abstract/functions';
 @import './abstract/mixins';
 @import './abstract/placeholders';
-@import './abstract/variables';
 
 // UTILS
 @import './utils/helpers';
@@ -21,6 +21,7 @@
 @import './components/buttons';
 @import './components/form';
 @import './components/input';
+@import './components/icons';
 
 // SECTIONS
 @import './sections/header';
