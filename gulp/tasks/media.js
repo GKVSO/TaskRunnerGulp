@@ -51,11 +51,13 @@ export function images() {
 }
 
 export function icons() {
-	return src('./src/assets/icons/**/*')
+	return src(['./src/assets/icons/**/*', '!./src/assets/icons/**/*.ico'], { encoding: false })
 		.pipe(plumber(plumberConfig('Icons')))
 		.pipe(changed('./app/assets/icons'))
 		.pipe(imagemin({ verbose: true }))
 		.pipe(svgSprite(svgSymbolConfig))
+		.pipe(dest('./app/assets/icons'), { base: './app/assets/icons' })
+		.pipe(src('./src/assets/icons/*.ico', { encoding: false }))
 		.pipe(dest('./app/assets/icons'), { base: './app/assets/icons' })
 		.on('end', browserSync.reload)
 }
