@@ -8,12 +8,6 @@ html {
 html {
 	scroll-behavior: smooth;
 }
-body {
-	color: $text-color;
-	font-family: $font-main;
-	font-size: $font-main-size;
-	text-wrap: balance;
-}
 
 @include custom-scrollbar;
 

@@ -2,3 +2,10 @@
 	background-color: $accent;
 	color: white;
 }
+
+body {
+	color: $text-color;
+	font-family: $font-main;
+	font-size: $font-main-size;
+	text-wrap: balance;
+}
