@@ -30,5 +30,3 @@ export {
 	destToBuild,
 	removeGitkeep
 }
-
-console.log(glob.sync(['**/*keep.txt', '!./node_modules/']))
