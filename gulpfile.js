@@ -6,8 +6,6 @@ import styles from './gulp/tasks/styles.js';
 import localServer from './gulp/tasks/localServer.js';
 import watch from './gulp/tasks/watch.js'
 import clean, { cleanApp, cleanBuild, cleanImg } from './gulp/tasks/clean.js';
-import removeGitkeep from './gulp/tasks/gitkeep.js';
-import { glob } from 'glob';
 
 import run from './gulp/tasks/run.js';
 import build, { destToBuild } from './gulp/tasks/build.js';
@@ -27,6 +25,5 @@ export {
 	cleanBuild,
 	cleanImg,
 	build,
-	destToBuild,
-	removeGitkeep
+	destToBuild
 }
