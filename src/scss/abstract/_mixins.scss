@@ -38,6 +38,22 @@
 // Retina Images Media
 @mixin mediaBg {
 	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-		@content
+		@content;
+	}
+}
+
+// Fonts
+@mixin font($font_name, $font_file_name, $font_weight: normal, $font_style: normal, $font_display: swap) {
+	@font-face {
+		font-family: $font_name;
+		src: url('../assets/fonts/#{$font_file_name}.eot');
+		src: url('../assets/fonts/#{$font_file_name}.eot?#iefix') format('embedded-opentype'),
+				url('../assets/fonts/#{$font_file_name}.woff2') format('woff2'),
+				url('../assets/fonts/#{$font_file_name}.woff') format('woff'),
+				url('../assets/fonts/#{$font_file_name}.ttf') format('truetype'),
+				url('../assets/fonts/#{$font_file_name}.svg##{$font_file_name}') format('svg');
+		font-weight: $font_weight;
+		font-style: $font_style;
+		font-display: $font_display;
 	}
 }
