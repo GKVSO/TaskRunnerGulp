@@ -1,7 +1,7 @@
 @include font($font_name: 'font_name', $font_file_name: 'font_file_name');
 
 *::selection {
-	background-color: $accent;
+	background-color: $accent-color;
 	color: white;
 }
 

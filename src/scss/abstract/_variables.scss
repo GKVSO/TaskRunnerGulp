@@ -1,23 +1,58 @@
-/* 
-	Colors 
-*/
-$accent: red;
-$brand: blue;	
+/*  Colors  */
+// Main colors
+$accent-color: red;
+$primary-color: blue;
+$secondary-color: green;
 $header-color: black;
 $text-color: gray;
+// Neutral colors
+$white-color: white;
+$black-color: black;
+$gray-color: gray;
+$gray-light-color: gray;
+$gray-dark-color: gray;
+// Background colors
+$background-light-color: gray;
+$background-dark-color: gray;
+// Text colors
+$text-color: $gray-color;
+$text-light-color: $gray-light-color;
+$text-dark-color: $gray-dark-color;
+// Header color
+$header-color: $white-color;
+// Link color
+$link-color: $primary-color;
+$link-hover-color: $accent-color;
+// Status color
+$success-color: green;
+$warning-color: yellow;
+$error-color: red;
+$disabled-color: $gray-light-color;
+// Other color
+$border-color: $gray-color;
 
 /* 
 	Custom ScrollBar
 */
 $width-scrollbar: 15px; // ширина scrollbar
-$color-scrollbar: $brand; // цвет дорожки
-$color-scroll: $accent; // цвет ползунка
+$color-scrollbar: $primary-color; // цвет дорожки
+$color-scroll: $accent-color; // цвет ползунка
 $border-radius-scroll: 20px; // закругления ползунка
 $padding-scroll: 3px; // padding вокруг ползунка
 
 // Fonts
 $font-main: 'Times New Roman', Times, serif;
-$font-main-size: 20px;
+
+// Fonts Size
+// $font-size-h1: ;
+// $font-size-h2: ;
+// $font-size-h3: ;
+// $font-size-h4: ;
+// $font-size-h5: ;
+// $font-size-h6: ;
+// $font-size-body: ;
+// $font-size-body-large: ;
+// $font-size-body-small: ;
 
 // Container
 $container-width: 1200px;
